@@ -1,4 +1,4 @@
-PAPER = paper.pdf
+PAPER = example.pdf
 VIEW = chromium
 BIB = bibtex
 VERSION = $(shell git describe --always)
@@ -21,7 +21,7 @@ view: $(PAPER)
 clean:
 	rm -f *.aux *.bbl *.blg *.log *.out *.dvi *.nav *.snm *.toc
 
-%.pdf: %.bib %.tex
+%.pdf: %.tex %/*
 	$(TEX) $*.tex
 	$(BIB) $*
 	$(TEX) $*.tex
