@@ -1,4 +1,4 @@
-PAPER = example.pdf
+PAPER = $(shell ls -d */ | sed -e "s/\//.pdf/g" | sed -e "s/share.pdf//g")
 VIEW = chromium
 BIB = bibtex
 VERSION = $(shell git describe --always)
