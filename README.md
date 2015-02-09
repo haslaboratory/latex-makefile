@@ -7,8 +7,7 @@ This is a latex example/framework.
 ### Init your project:
 
 ```bash
-git init your paper
-git pull https://github.com/janzhou/latex-example master
+git clone https://github.com/janzhou/latex-example mypaper
 ```
 
 ### Create your latex files as the example:
