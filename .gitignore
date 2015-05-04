@@ -110,3 +110,7 @@ sympy-plots-for-*.tex/
 
 # configure
 .configure
+
+# https://www.jetbrains.com/idea/
+.idea
+papers.iml
