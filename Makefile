@@ -5,7 +5,7 @@ VERSION = $(shell git describe --always)
 DATE = $(shell git log -n 1 --format=%ai)
 
 define TEX =
-xelatex -interaction nonstopmode -halt-on-error -file-line-error "\def\version{$(DATE) $(VERSION)} \input{$*/$*.tex}"
+xelatex -interaction nonstopmode -halt-on-error -file-line-error "\def\id{$*} \def\version{$(DATE) $(VERSION)} \input{$*/$*.tex}"
 endef
 
 ifeq ($(wildcard .configure),) 
