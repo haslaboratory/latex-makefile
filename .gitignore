@@ -114,3 +114,6 @@ sympy-plots-for-*.tex/
 # https://www.jetbrains.com/idea/
 .idea
 papers.iml
+
+# vim
+.swp
