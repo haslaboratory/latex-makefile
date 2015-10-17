@@ -7,18 +7,18 @@ This is a latex example/framework.
 ### Init your project:
 
 ```bash
-git clone https://github.com/janzhou/latex-example mypaper
+git clone https://github.com/janzhou/latex-example
 ```
 
 ### Create your latex files as the example:
 
 ```
-    mypdf\
-        mypdf.tex
+    paper\
+        paper.tex
         bib\
-            mypdf.tex
+            paper.tex
         fig\
-            myfig.eps
+            paper.eps
 ```
 
 ### Compile
@@ -34,5 +34,5 @@ make
 If you want to specify the pdf to compile, you can use a configure file:
 
 ```makefile
-    PAPER = mypdf.pdf
+    PAPER = paper.pdf
 ```
