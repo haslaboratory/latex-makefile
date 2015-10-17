@@ -29,3 +29,6 @@ clean:
 
 watch:
 	while sleep 10; do make; done
+
+merge:
+	git pull git@bitbucket.org:janzhou/latex-example.git
