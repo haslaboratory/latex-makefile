@@ -36,3 +36,9 @@ If you want to specify the pdf to compile, you can use a configure file:
 ```makefile
     PAPER = paper.pdf
 ```
+
+## Development
+
+- File a Bug: https://janzhou.org/bugzilla/buglist.cgi?component=Latex%20Example&product=Latex&resolution=---
+- Source Code 1: https://github.com/janzhou/latex-example
+- Source Code 2: https://bitbucket.org/janzhou/latex-example
