@@ -3,6 +3,7 @@ VIEW = xdg-open
 BIB = bibtex
 VERSION = $(shell git describe --always)
 DATE = $(shell git log -n 1 --format=%ai)
+MULTICORES = make -j$(shell grep -c ^processor /proc/cpuinfo)
 
 define TEX =
 xelatex -interaction nonstopmode -halt-on-error -file-line-error "\def\id{$*} \def\version{$(DATE) $(VERSION)} \input{$*/$*.tex}"
@@ -32,3 +33,6 @@ watch:
 
 merge:
 	git pull git@bitbucket.org:janzhou/latex-example.git
+
+multicore:
+	$(MULTICORES)

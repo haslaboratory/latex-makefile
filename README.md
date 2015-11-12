@@ -23,6 +23,10 @@ This command will compile all the pdffiles in your project:
 
     make
 
+To compile multiple pdfs concurrently, use command:
+
+    make multicore
+
 ### Write a ``.configure``
 
 If you want to specify the pdf to compile, you can use a configure file:
