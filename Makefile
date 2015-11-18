@@ -6,7 +6,7 @@ DATE = $(shell git log -n 1 --format=%ai)
 MULTICORES = make -j$(shell grep -c ^processor /proc/cpuinfo)
 
 define TEX =
-xelatex -interaction nonstopmode -halt-on-error -file-line-error "\def\id{$*} \def\version{$(DATE) $(VERSION)} \input{$*/$*.tex}"
+share/bin/latex
 endef
 
 ifeq ($(wildcard .configure),) 
@@ -23,10 +23,10 @@ clean:
 	rm -f *.aux *.bbl *.blg *.log *.out *.dvi *.nav *.snm *.toc
 
 %.pdf: %/* %/*/*
-	$(TEX) $*/$*.tex
+	$(TEX) $*
 	$(BIB) $*
-	$(TEX) $*/$*.tex
-	$(TEX) $*/$*.tex
+	$(TEX) $*
+	$(TEX) $*
 
 watch:
 	while sleep 10; do make; done

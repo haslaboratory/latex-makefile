@@ -1,0 +1,15 @@
+#!/bin/bash
+
+[ -f $*/config ] && . $*/config
+
+case $latex in
+  "pdflatex" )
+    pdflatex -interaction nonstopmode -halt-on-error -file-line-error "\def\id{$*} \def\version{$(DATE) $(VERSION)} \input{$*/$*.tex}"
+    ;;
+  "xelatex" )
+    xelatex -interaction nonstopmode -halt-on-error -file-line-error "\def\id{$*} \def\version{$(DATE) $(VERSION)} \input{$*/$*.tex}"
+    ;;
+  "" )
+    xelatex -interaction nonstopmode -halt-on-error -file-line-error "\def\id{$*} \def\version{$(DATE) $(VERSION)} \input{$*/$*.tex}"
+    ;;
+esac
