@@ -6,12 +6,12 @@
 
 case $latex in
   "pdflatex" )
-    pdflatex -interaction nonstopmode -halt-on-error -file-line-error "\def\id{$*} \def\version{$(DATE) $(VERSION)} \input{$file}"
+    pdflatex -interaction nonstopmode -halt-on-error -file-line-error -jobname=$* "\def\id{$*} \def\version{$(DATE) $(VERSION)} \input{$file}"
     ;;
   "xelatex" )
-    xelatex -interaction nonstopmode -halt-on-error -file-line-error "\def\id{$*} \def\version{$(DATE) $(VERSION)} \input{$file}"
+    xelatex -interaction nonstopmode -halt-on-error -file-line-error  -jobname=$* "\def\id{$*} \def\version{$(DATE) $(VERSION)} \input{$file}"
     ;;
   "" )
-    xelatex -interaction nonstopmode -halt-on-error -file-line-error "\def\id{$*} \def\version{$(DATE) $(VERSION)} \input{$file}"
+    xelatex -interaction nonstopmode -halt-on-error -file-line-error  -jobname=$* "\def\id{$*} \def\version{$(DATE) $(VERSION)} \input{$file}"
     ;;
 esac
