@@ -1,8 +1,6 @@
 PAPER = $(shell ls -d */ | sed -e "s/\//.pdf/g" | sed -e "s/share.pdf//g")
 VIEW = xdg-open
 BIB = bibtex
-VERSION = $(shell git describe --always)
-DATE = $(shell git log -n 1 --format=%ai)
 MULTICORES = make -j$(shell grep -c ^processor /proc/cpuinfo)
 
 define TEX =
