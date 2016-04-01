@@ -22,6 +22,7 @@ view: $(PAPER)
 
 clean:
 	rm -f *.aux *.bbl *.blg *.log *.out *.dvi *.nav *.snm *.toc
+	rm -rf */out
 
 %.pdf: $(filter-out %/out/*, $(wildcard %/* %/*/*))
 	$(PRE_COMPILE) $*
