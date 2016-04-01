@@ -1,0 +1,12 @@
+#!/bin/bash
+
+mkdir -p $*/out
+
+cp $*.* $*/out
+
+[ -f $*/config ] && . $*/config
+
+if [[ ! -z "${post_compile}" ]]; then
+  echo ${post_compile}
+  ${post_compile}
+fi

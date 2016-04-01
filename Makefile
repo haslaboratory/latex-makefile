@@ -7,6 +7,9 @@ define TEX =
 share/bin/latex
 endef
 
+PRE_COMPILE = share/bin/pre_compile
+POST_COMPILE = share/bin/post_compile
+
 ifeq ($(wildcard .configure),) 
 	else 
 	include .configure
@@ -20,11 +23,13 @@ view: $(PAPER)
 clean:
 	rm -f *.aux *.bbl *.blg *.log *.out *.dvi *.nav *.snm *.toc
 
-%.pdf: %/* %/*/*
+%.pdf: $(filter-out %/out/*, $(wildcard %/* %/*/*))
+	$(PRE_COMPILE) $*
 	$(TEX) $*
 	$(BIB) $*
 	$(TEX) $*
 	$(TEX) $*
+	$(POST_COMPILE) $*
 
 watch:
 	while sleep 10; do make; done

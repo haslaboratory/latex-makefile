@@ -1,0 +1,8 @@
+#!/bin/bash
+
+[ -f $*/config ] && . $*/config
+
+if [[ ! -z "${pre_compile}" ]]; then
+  echo ${pre_compile}
+  ${pre_compile}
+fi
