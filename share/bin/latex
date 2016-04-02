@@ -1,5 +1,10 @@
 #!/bin/bash
 
+PRE_COMPILE=share/bin/pre_compile
+POST_COMPILE=share/bin/post_compile
+
+$PRE_COMPILE $*
+
 VERSION=$(``git describe --always``)
 DATE=$(``git log -n 1 --format=%ai``)
 
@@ -10,11 +15,22 @@ DATE=$(``git log -n 1 --format=%ai``)
 case $latex in
   "pdflatex" )
     pdflatex -interaction nonstopmode -halt-on-error -file-line-error -jobname=$* "\def\id{$*} \def\version{${DATE} ${VERSION}} \input{$file}"
+    bibtex $*
+    pdflatex -interaction nonstopmode -halt-on-error -file-line-error -jobname=$* "\def\id{$*} \def\version{${DATE} ${VERSION}} \input{$file}"
+    pdflatex -interaction nonstopmode -halt-on-error -file-line-error -jobname=$* "\def\id{$*} \def\version{${DATE} ${VERSION}} \input{$file}"
     ;;
   "xelatex" )
+    xelatex -interaction nonstopmode -halt-on-error -file-line-error  -jobname=$* "\def\id{$*} \def\version{${DATE} ${VERSION}} \input{$file}"
+    bibtex $*
+    xelatex -interaction nonstopmode -halt-on-error -file-line-error  -jobname=$* "\def\id{$*} \def\version{${DATE} ${VERSION}} \input{$file}"
     xelatex -interaction nonstopmode -halt-on-error -file-line-error  -jobname=$* "\def\id{$*} \def\version{${DATE} ${VERSION}} \input{$file}"
     ;;
   "" )
     xelatex -interaction nonstopmode -halt-on-error -file-line-error  -jobname=$* "\def\id{$*} \def\version{${DATE} ${VERSION}} \input{$file}"
+    bibtex $*
+    xelatex -interaction nonstopmode -halt-on-error -file-line-error  -jobname=$* "\def\id{$*} \def\version{${DATE} ${VERSION}} \input{$file}"
+    xelatex -interaction nonstopmode -halt-on-error -file-line-error  -jobname=$* "\def\id{$*} \def\version{${DATE} ${VERSION}} \input{$file}"
     ;;
 esac
+
+$POST_COMPILE $*
