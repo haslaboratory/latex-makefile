@@ -2,7 +2,8 @@
 
 mkdir -p $*/out
 
-cp $*.* $*/out
+mv $*.* $*/out
+cp $*/out/$*.pdf .
 
 [ -f $*/config ] && . $*/config
 

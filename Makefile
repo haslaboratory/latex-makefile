@@ -21,10 +21,12 @@ view: $(PAPER)
 	$(VIEW) $(PAPER)
 
 clean:
-	rm -f *.aux *.bbl *.blg *.log *.out *.dvi *.nav *.snm *.toc
 	rm -rf */out
 
-%.pdf: %/*.tex
+%.test: $(filter example/%,$(wildcard */*))
+	echo $^
+
+%.pdf: $(wildcard $@/*.tex)
 	$(PRE_COMPILE) $*
 	$(TEX) $*
 	$(BIB) $*
