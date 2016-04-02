@@ -24,7 +24,7 @@ clean:
 	rm -f *.aux *.bbl *.blg *.log *.out *.dvi *.nav *.snm *.toc
 	rm -rf */out
 
-%.pdf: $(filter-out %/out/*, $(wildcard %/* %/*/*))
+%.pdf: %/*.tex
 	$(PRE_COMPILE) $*
 	$(TEX) $*
 	$(BIB) $*
