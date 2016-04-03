@@ -118,4 +118,6 @@ papers.iml
 # vim
 *.swp
 
+.dropbox
+
 makefile.d
