@@ -119,5 +119,5 @@ papers.iml
 *.swp
 
 .dropbox
+dependencies
 
-makefile.d

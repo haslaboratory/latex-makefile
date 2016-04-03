@@ -27,6 +27,12 @@ To compile multiple pdfs concurrently, use command:
 
     make multicore
 
+### Watch Changes
+
+To compile automatically when file changed:
+
+    make watch
+
 ### Write a ``.configure``
 
 If you want to specify the pdf to compile, you can use a configure file:
