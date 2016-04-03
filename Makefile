@@ -2,10 +2,7 @@ PAPER = $(shell ls -d */ | sed -e "s/\//.pdf/g" | sed -e "s/share.pdf//g")
 VIEW = xdg-open
 MULTICORES = make -j$(shell grep -c ^processor /proc/cpuinfo)
 
-ifeq ($(wildcard .configure),) 
-	else 
-	include .configure
-endif
+-include .configure
 
 all: $(PAPER)
 
@@ -16,7 +13,7 @@ clean:
 	rm -rf */out
 
 depend:
-	share/bin/depend
+	share/bin/depend > makefile.d
 
 watch:
 	while sleep 10; do make depend; make; done
@@ -27,4 +24,4 @@ pull:
 multicore:
 	$(MULTICORES)
 
-include makefile.d
+-include makefile.d

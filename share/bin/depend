@@ -10,8 +10,7 @@ depend(){
   echo
 }
 
-rm -f makefile.d
 for paper in $papers
 do
-  depend $paper >> makefile.d
+  depend $paper
 done
