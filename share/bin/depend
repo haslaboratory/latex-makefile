@@ -1,0 +1,16 @@
+#!/bin/bash
+
+tex=share/bin/latex
+papers=$(ls -d */ | sed -e "s/\///g" | sed -e "s/share//g")
+
+depend(){
+  depend=$(find $1 -regex ".*\.\(jpg\|gif\|png\|jpeg\|tex\|bib\|eps\)" -not -path "$1/out/*")
+  echo $1.pdf: $depend
+  echo -e "\t$tex $1"
+  echo
+}
+
+for paper in $papers
+do
+  depend $paper
+done
