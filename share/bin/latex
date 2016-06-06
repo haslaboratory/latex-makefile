@@ -12,25 +12,36 @@ DATE=$(``git log -n 1 --format=%ai``)
 
 [ -f $*/index.tex ] && file=$*/index.tex || file=$*/$*.tex
 
-case $latex in
-  "pdflatex" )
-    pdflatex -interaction nonstopmode -halt-on-error -file-line-error -jobname=$* "\def\id{$*} \def\version{${DATE} ${VERSION}} \input{$file}"
-    bibtex $*
-    pdflatex -interaction nonstopmode -halt-on-error -file-line-error -jobname=$* "\def\id{$*} \def\version{${DATE} ${VERSION}} \input{$file}"
+latex(){
+  case $latex in
+    "pdflatex" )
     pdflatex -interaction nonstopmode -halt-on-error -file-line-error -jobname=$* "\def\id{$*} \def\version{${DATE} ${VERSION}} \input{$file}"
     ;;
-  "xelatex" )
-    xelatex -interaction nonstopmode -halt-on-error -file-line-error  -jobname=$* "\def\id{$*} \def\version{${DATE} ${VERSION}} \input{$file}"
-    bibtex $*
-    xelatex -interaction nonstopmode -halt-on-error -file-line-error  -jobname=$* "\def\id{$*} \def\version{${DATE} ${VERSION}} \input{$file}"
+    "xelatex" )
     xelatex -interaction nonstopmode -halt-on-error -file-line-error  -jobname=$* "\def\id{$*} \def\version{${DATE} ${VERSION}} \input{$file}"
     ;;
-  "" )
-    xelatex -interaction nonstopmode -halt-on-error -file-line-error  -jobname=$* "\def\id{$*} \def\version{${DATE} ${VERSION}} \input{$file}"
-    bibtex $*
-    xelatex -interaction nonstopmode -halt-on-error -file-line-error  -jobname=$* "\def\id{$*} \def\version{${DATE} ${VERSION}} \input{$file}"
+    "" )
     xelatex -interaction nonstopmode -halt-on-error -file-line-error  -jobname=$* "\def\id{$*} \def\version{${DATE} ${VERSION}} \input{$file}"
     ;;
-esac
+  esac
+}
 
+bib(){
+  case $bib in
+    "bibtex" )
+    bibtex $*
+    ;;
+    "biber" )
+    biber $*
+    ;;
+    "" )
+    bibtex $*
+    ;;
+  esac
+}
+
+latex $*
+bib $*
+latex $*
+latex $*
 $POST_COMPILE $*
