@@ -3,6 +3,10 @@
 PRE_COMPILE=share/bin/pre_compile
 POST_COMPILE=share/bin/post_compile
 
+export TEXINPUTS=$(share/bin/texmf $*)
+# echo $TEXINPUTS
+# kpsewhich
+
 $PRE_COMPILE $*
 
 VERSION=$(``git describe --always``)

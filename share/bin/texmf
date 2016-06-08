@@ -1,0 +1,11 @@
+#!/bin/bash
+
+TEXMF=".:"
+for dir in $*/texmf share/texmf
+do
+  if [ -d $dir ]; then
+    TEXMF="$TEXMF$(pwd)/$dir:"
+  fi
+done
+
+echo $TEXMF
