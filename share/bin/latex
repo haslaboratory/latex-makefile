@@ -4,7 +4,7 @@ PRE_COMPILE=share/bin/pre_compile
 POST_COMPILE=share/bin/post_compile
 
 export TEXINPUTS=$(share/bin/texmf $*)
-# echo $TEXINPUTS
+export BSTINPUTS=$TEXINPUTS
 # kpsewhich
 
 $PRE_COMPILE $*
