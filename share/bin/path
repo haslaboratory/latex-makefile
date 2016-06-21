@@ -1,11 +1,11 @@
 #!/bin/bash
 
-TEXMF=".:"
+TEXMF="$(pwd)/$*:$(pwd):"
 
-for dir in $* $*/texmf share/texmf
+for dir in "$(pwd)/$*/texmf" "$(pwd)/share/texmf"
 do
   if [ -d $dir ]; then
-    TEXMF="$TEXMF$(pwd)/$dir:"
+    TEXMF="$TEXMF$dir:"
   fi
 done
 

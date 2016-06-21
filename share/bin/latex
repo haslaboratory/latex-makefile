@@ -1,14 +1,12 @@
 #!/bin/bash
 
-PRE_COMPILE=share/bin/pre_compile
-POST_COMPILE=share/bin/post_compile
+PRE_COMPILE="$(pwd)/share/bin/pre_compile"
+POST_COMPILE="$(pwd)/share/bin/post_compile"
 
 export TEXINPUTS=$(share/bin/path $*)
 export BSTINPUTS=$TEXINPUTS
 export BIBINPUTS=$TEXINPUTS
 # kpsewhich
-
-$PRE_COMPILE $*
 
 VERSION=$(``git describe --always``)
 DATE=$(``git log -n 1 --format=%ai``)
@@ -24,6 +22,9 @@ latex(){
     ;;
     "xelatex" )
     xelatex -interaction nonstopmode -halt-on-error -file-line-error  -jobname=$* "\def\id{$*} \def\version{${DATE} ${VERSION}} \input{$file}"
+    ;;
+    "lualatex" )
+    lualatex -interaction nonstopmode -halt-on-error -file-line-error  -jobname=$* "\def\id{$*} \def\version{${DATE} ${VERSION}} \input{$file}"
     ;;
     "" )
     xelatex -interaction nonstopmode -halt-on-error -file-line-error  -jobname=$* "\def\id{$*} \def\version{${DATE} ${VERSION}} \input{$file}"
@@ -45,8 +46,18 @@ bib(){
   esac
 }
 
+mkdir -p $*/out
+cd $*
+
+$PRE_COMPILE $*
+
+cd out
+
 latex $*
 bib $*
 latex $*
 latex $*
+
+cd ..
+
 $POST_COMPILE $*

@@ -1,12 +1,8 @@
 #!/bin/bash
 
-mkdir -p $*/out
+cp out/$*.pdf ..
 
-mv $*.* $*/out
-cp $*/out/$*.pdf .
-
-[ -f $*/config ] && . $*/config
-
+[ -f config ] && . config
 if [[ ! -z "${post_compile}" ]]; then
   echo ${post_compile}
   ${post_compile}
