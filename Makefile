@@ -17,7 +17,7 @@ watch:
 	while sleep 10; do make; done
 
 pull:
-	git pull https://github.com/janzhou/latex-example
+	git pull https://github.com/janzhou/latex-makefile
 
 multicore:
 	$(MULTICORES)
