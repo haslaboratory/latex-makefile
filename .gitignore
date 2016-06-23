@@ -119,6 +119,6 @@ papers.iml
 *.swp
 
 .dropbox
-dependencies
 desktop.ini
 .directory
+.makefile
