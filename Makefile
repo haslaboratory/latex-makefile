@@ -24,5 +24,5 @@ multicore:
 .makefile/%.makefile: .makefile share/makefile.sed
 	sed -e "s/SED/$*/g" share/makefile.sed > $@
 
-#-include $(MAKEFILES)
+-include $(MAKEFILES)
 
