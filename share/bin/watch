@@ -1,0 +1,12 @@
+#!/bin/bash
+
+while file=$(inotifywait -rqe modify --format %w%f .); do
+  case "$file" in
+    *.tex | *.bib | *.sty | *.cls | *.bst | *.jpg | *.png | *.eps  )
+    make all
+    ;;
+    *)
+    # ignore
+    ;;
+  esac
+done
