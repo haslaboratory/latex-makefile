@@ -10,7 +10,10 @@ clean:
 	rm -rf */out .makefile
 
 watch:
-	while inotifywait $(ALL_FILES); do make; done
+	while sleep 10; do make; done
+
+watch-inotify:
+	share/bin/watch
 
 pull:
 	git pull https://github.com/janzhou/latex-makefile
