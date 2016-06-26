@@ -10,10 +10,10 @@ clean:
 	rm -rf */out .makefile
 
 watch:
-	while sleep 10; do make; done
+	share/bin/watch
 
 watch-inotify:
-	share/bin/watch
+	share/bin/watch-inotify
 
 pull:
 	git pull https://github.com/janzhou/latex-makefile
@@ -28,4 +28,3 @@ multicore:
 	sed -e "s/SED/$*/g" share/makefile.sed > $@
 
 -include $(MAKEFILES)
-
