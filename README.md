@@ -103,3 +103,15 @@ You can use some default variables in your ``.tex`` files:
 
 - ``\id``: The current folder/pdf name. e.g. In ``.tex`` files in folder ``article``, the ``\id`` should be equal to ``article``.
 - ``\version``: This is the ``git`` version you can use in your ``.tex`` files. You can also use ``\include{version}`` to stay safer (``\version`` will be undefined if you use it in standalone compiler. ``share/texmf/version.tex`` will check if ``\version`` is defined for you.).
+
+# Related Projects
+
+These are latex compiling scripts which have been updated with in 2 years:
+
+- [shiblon/latex-makefile](https://github.com/shiblon/latex-makefile) shiblon's version. Currently has most stars and forks on github.
+- [latexmk-Makefile](https://github.com/rueycheng/latexmk-Makefile) a boilerplate Makefile showing how to use latexmk with Gnu Make.
+- [repsacc/latex-makefile](https://github.com/repsacc/latex-makefile) a very basic Makefile with example.
+- [makefile-latex](https://github.com/ricardoerikson/makefile-latex) ricardoerikson's version.
+- [LatexProjectMakefile](https://github.com/Daniel-M/LatexProjectMakefile) Daniel-M's version. Able to compile multiple pdf files, but need some efforts.
+- [kulia/makefile-for-latex](https://github.com/kulia/makefile-for-latex) kulia's version.
+- [boris-spas/latex-makefile](https://github.com/boris-spas/latex-makefile) Makefile wrapper around latexmk.
