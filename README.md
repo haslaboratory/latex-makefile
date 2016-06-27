@@ -104,6 +104,25 @@ You can use some default variables in your ``.tex`` files:
 - ``\id``: The current folder/pdf name. e.g. In ``.tex`` files in folder ``article``, the ``\id`` should be equal to ``article``.
 - ``\version``: This is the ``git`` version you can use in your ``.tex`` files. You can also use ``\include{version}`` to stay safer (``\version`` will be undefined if you use it in standalone compiler. ``share/texmf/version.tex`` will check if ``\version`` is defined for you.).
 
+# Tip: Collaborate using Dropbox
+
+**This ``Makefile`` works better while collaborating with Dropbox.**
+
+One of the headache of collaborate on a latex project is every collaborator need to setup the same compiling tools. It is often not that easy. And you can not simply pick up a computer and start to work before install the correct tools on that computer.
+
+[ShareLaTeX](https://www.sharelatex.com) is a good collaborating tool. But it is either a little bit expensive or hard to setup your own server.
+
+Dropbox is a grate sync \& collaborate tool. It is the only cloud storage that has official Linux support. But no support for latex.
+
+We can setup a Dropbox shared folder to collaborate on the latex projects. We then can sync the files to a Linux machine to compile them in a background terminal like ``GNU Screen``. The machine can be any Linux desktop or server with latex tools installed and an access to Internet, and need not to be public accessible. It is cheep.
+
+Each latex project can be place in an independent folder and be compiled automatically by the ``Makefile``. The compiler generated files is located in ``out`` directory under each project folder. We can find the ``pdf`` file in ``out`` directory and see the ``.log`` file to debug the compiling error.
+
+**Known bugs:**
+
+- To watch the latex changes, the ``watch`` script use a loop method, but it may flush the ``.log`` file too quickly if there are errors. As a result, you may not have time to see the ``error`` information.
+- The ``watch-inotify`` use inotify to trigger ``make`` command while file changes detected. But, it may failed to detect some of the file changes because of the file sync problem. So, you have to ``pretend`` to change the files to trigger the compiling occasionally.
+
 # Related Projects
 
 These are latex compiling scripts which have been updated with in 2 years:
