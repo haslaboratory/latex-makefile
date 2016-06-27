@@ -1,6 +1,8 @@
 #!/bin/bash
 
-while file=$(inotifywait -rqe modify --format %w%f .); do
+pwd=$(pwd)
+
+while file=$(inotifywait -r -q -e delete -e create -e modify -e move --exclude '/\..+' --format %w%f $pwd); do
   case "$file" in
     *.tex | *.bib | *.sty | *.cls | *.bst | *.jpg | *.png | *.eps  )
     make all
@@ -9,4 +11,7 @@ while file=$(inotifywait -rqe modify --format %w%f .); do
     # ignore
     ;;
   esac
+
+  [ ! -d $pwd ] || inotifywait -qqt 2 -e create -e moved_to $pwd
+  cd $pwd
 done
