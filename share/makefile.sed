@@ -6,4 +6,4 @@ SED_IMG_FILES = $(shell find SED -name '*.jpg' -or -name '*.png' -or -name '*.ep
 SED_ALL_FILES = $(SED_TEX_FILES) $(SED_IMG_FILES) $(SED_BIB_FILES) $(SED_BST_FILES)
 
 SED.pdf: $(SED_ALL_FILES)
-	share/bin/latex SED
+	share/bin/latex.route SED

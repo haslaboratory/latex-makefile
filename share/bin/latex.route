@@ -1,0 +1,15 @@
+#!/bin/bash
+
+[ -f $*/config ] && . $*/config
+
+case "$latexmk" in
+  1)
+  share/bin/latexmk $*
+  ;;
+  0)
+  share/bin/latex $*
+  ;;
+  *)
+  share/bin/latex $*
+  ;;
+esac

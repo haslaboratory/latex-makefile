@@ -1,1 +1,2 @@
 latex=xelatex
+latexmk=1
