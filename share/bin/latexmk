@@ -1,0 +1,47 @@
+#!/bin/bash
+
+PRE_COMPILE="$(pwd)/share/bin/pre_compile"
+POST_COMPILE="$(pwd)/share/bin/post_compile"
+
+export TEXINPUTS=$(share/bin/path $*)
+export BSTINPUTS=$TEXINPUTS
+export BIBINPUTS=$TEXINPUTS
+# kpsewhich
+
+VERSION=$(``git describe --always``)
+DATE=$(``git log -n 1 --format=%ai``)
+
+[ -f $*/config ] && . $*/config
+
+[ -f $*/index.tex ] && file=$*/index.tex || file=$*/$*.tex
+
+latex(){
+  case $latex in
+    "pdflatex" )
+    latexmk -jobname=$* -pdf -pdflatex="pdflatex -interaction=nonstopmode -halt-on-error -file-line-error --shell-escape --synctex=1 %O '\def\id{$*} \def\version{${DATE} ${VERSION}} \input{%S}'" ../../$file
+    ;;
+    "xelatex" )
+    latexmk -jobname=$* -pdf -pdflatex="xelatex -interaction=nonstopmode -halt-on-error -file-line-error --shell-escape --synctex=1 %O '\def\id{$*} \def\version{${DATE} ${VERSION}} \input{%S}'" ../../$file
+    ;;
+    "lualatex" )
+    latexmk -jobname=$* -pdf -pdflatex="lualatex -interaction=nonstopmode -halt-on-error -file-line-error --shell-escape --synctex=1 %O '\def\id{$*} \def\version{${DATE} ${VERSION}} \input{%S}'" ../../$file
+    ;;
+    "" )
+    latexmk -jobname=$* -pdf -pdflatex="xelatex -interaction=nonstopmode -halt-on-error -file-line-error --shell-escape --synctex=1 %O '\def\id{$*} \def\version{${DATE} ${VERSION}} \input{%S}'" ../../$file
+    ;;
+  esac
+}
+
+
+mkdir -p $*/out
+cd $*
+
+$PRE_COMPILE $*
+
+cd out
+
+latex $*
+
+cd ..
+
+$POST_COMPILE $*
