@@ -1,0 +1,9 @@
+#!/bin/bash
+
+export TEXINPUTS=$(share/bin/path $*)
+
+cd $*
+
+[ -f index.tex ] && file=index.tex || file=$*.tex
+
+texcount $file -inc | grep 'Words in text: ' | tail -n 1 | cut -d ' ' -f 4
