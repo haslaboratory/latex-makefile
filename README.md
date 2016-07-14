@@ -87,6 +87,18 @@ You can also override ``bib`` compiler:
 
     bib=biber
 
+## Latexmk support
+
+``Makefile`` alone can not get the correct dependency setting to make the compiler run ``latex`` and ``bibtex`` properly. That is why the most safer action is chose. In the default ``pdf`` generating process, we run ``latex``, ``bibtex, ``latex`` and ``latex`` in a row. If we modify any contents, we rerun the above commands to grantee we get the correct ``pdf``. This is unnecessary and only ``latex`` needed to be rerun once if we make minor changes in ``.tex`` files, which is very common.
+
+``Latexmk`` au­to­mates the pro­cess of gen­er­at­ing a LaTeX doc­u­ment. It runs ``latex`` and ``bibtex`` based on the changes you made. It can also use ``biber`` automatically if you use it.
+
+``Latexmk`` is disabled in the ``Makefile`` by default. To enable it, add the following code in config:
+
+```shell
+latexmk=1
+```
+
 ## TEXMF Search Path
 
 Suppose you are compiling ``article.pdf``. These paths will be searched in order: ``article``, ``.``, ``article/texmf`` and ``share/texmf``.
