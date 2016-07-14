@@ -103,6 +103,7 @@ You can use some default variables in your ``.tex`` files:
 
 - ``\id``: The current folder/pdf name. e.g. In ``.tex`` files in folder ``article``, the ``\id`` should be equal to ``article``.
 - ``\version``: This is the ``git`` version you can use in your ``.tex`` files. You can also use ``\include{version}`` to stay safer (``\version`` will be undefined if you use it in standalone compiler. ``share/texmf/version.tex`` will check if ``\version`` is defined for you.).
+- ``\wordcount``: The words in text. It use ``texcount`` to counts words in ``index.tex`` and all the ``\input`` files. But because of the limitation of ``texcount``, ``\id`` in file path is not supported (see #6 for details).
 
 # Tip: Collaborate using Dropbox
 
