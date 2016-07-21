@@ -4,7 +4,7 @@ pwd=$(pwd)
 
 while file=$(inotifywait -r -q -e delete -e create -e modify -e move --exclude '/\..+' --format %w%f $pwd); do
   case "$file" in
-    *.tex | *.bib | *.sty | *.cls | *.bst | *.jpg | *.png | *.eps  )
+    *.tex | *.bib | *.sty | *.cls | *.bst | *.jpg | *.png | *.eps | *.csv )
     make all
     ;;
     *)
