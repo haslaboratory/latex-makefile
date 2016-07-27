@@ -4,11 +4,21 @@ Ultimate Latex Makefile with Example: https://github.com/janzhou/latex-makefile
 
 # Usage
 
+## Suggested Tools
+
+For Debian/Ubunto based systems, install:
+
+```bash
+sudo apt install make texlive-full inotify-tools biber bibtool poppler-utils
+```
+
 ## Init your project:
 
 Clone the makefile:
 
-    git clone https://github.com/janzhou/latex-makefile
+```bash
+git clone https://github.com/janzhou/latex-makefile
+```
 
 *Do not touch the existing files unless you want to develop the makefile. All your latex files should be placed in standalone directories.*
 
@@ -16,7 +26,9 @@ Clone the makefile:
 
 Create a new sub folder to start editing. e.g. If you want to generate ``article.pdf``, create a folder named ``article``.
 
-    mkdir article
+```bash
+mkdir article
+```
 
 The compiling script will start from ``article/index.tex`` or ``article/article.tex``.
 
@@ -28,25 +40,35 @@ In using ``article.tex`` like file, you can more easily compile the ``.tex`` fil
 
 The compiler will automatically find all the sub folders, and solve the dependencies. Each sub folder will compiled to a ``pdf`` file. Just use ``GNU Make``:
 
-    make
+```bash
+make
+```
 
 You can also compile specific ``pdf`` file by use the filename as the parameter. e.g.
 
-    make article.pdf
+```bash
+make article.pdf
+```
 
 If you are using multicore CPUs, and you want to compile multiple ``pdf``s concurrently. The ``Makefile`` can find the number of CPU Cores, and do multi threaded compiling:
 
-    make multicore
+```bash
+make multicore
+```
 
 ## Watch Changes
 
 The ``Makefile`` can watch the changes in the directories and compile the ``pdf``s automatically when files modified. There are two scripts included. One is using a loop to compile the ``pdf``s:
 
-    make watch
+```bash
+make watch
+```
 
 The other one is using ``inotify`` to watch the file changes in the directories (require ``inotify-tools`` in debian based system):
 
-    make watch-inotify
+```bash
+make watch-inotify
+```
 
 Use the one that works for you. Because in each ``make``, the ``Makefile`` will search the dependencies, this will result in warnnings like this:
 
@@ -63,7 +85,9 @@ Alternatively you can use shell scripts located in ``share/bin/watch`` and ``sha
 
 To upgrade the ``Makefile``, simply use command:
 
-    make pull
+```bash
+make pull
+```
 
 In order to not break the upgrade, please do not touch any existing files and directories such as:
 
@@ -79,13 +103,17 @@ If you need to customize the ``Makefile``, place your stuff in ``.configure``.
 
 The ``Makefile`` will use ``xelatex`` by default, if you want to override this, create a file ``article/config`` and write:
 
-    latex=lualatex
+```bash
+latex=lualatex
+```
 
 The supported compilers are ``pdflatex``, ``lualatex``.
 
 You can also override ``bib`` compiler:
 
-    bib=biber
+```bash
+bib=biber
+```
 
 ## Latexmk support
 
@@ -113,7 +141,7 @@ The use of ``share/texmf`` should be avoided, as it is supposed to put some shar
 
 If you need to include files from other latex sources, it would be wise to explicitly add dependencies in the make file. So that the changes in the source ``pdf`` would cause rebuild in the destiny ``pdf``. This is done by add ``depend`` configuration in ``config`` file:
 
-```shell
+```bash
 depend="source1 source2"
 ```
 
