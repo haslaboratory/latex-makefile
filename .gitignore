@@ -123,3 +123,4 @@ desktop.ini
 .directory
 .makefile
 */out
+.pdfignore

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+all=$(ls -d */ | sed -e "s/\//.pdf/g" | sed -e "s/share.pdf//g")
+
+for ignore in $(cat .pdfignore)
+do
+  all=$(echo $all | sed -e "s/${ignore}//g")
+done
+
+echo $all
