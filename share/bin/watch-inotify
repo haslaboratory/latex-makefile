@@ -1,11 +1,36 @@
 #!/bin/bash
 
 pwd=$(pwd)
+dir=$*
 
-while file=$(inotifywait -r -q -e delete -e create -e modify -e move --exclude '/\..+' --format %w%f $pwd); do
+watch(){
+  if [[ $dir == "" ]]
+  then
+    echo $pwd
+  else
+    for pdf in $dir
+    do
+      echo $pwd/$pdf
+    done
+  fi
+}
+
+target(){
+  if [[ $dir == "" ]]
+  then
+    echo "all"
+  else
+    for pdf in $dir
+    do
+      echo $pdf.pdf
+    done
+  fi
+}
+
+while file=$(inotifywait -r -q -e delete -e create -e modify -e move --exclude '/\..+' --format %w%f $(watch)); do
   case "$file" in
     *.tex | *.bib | *.sty | *.cls | *.bst | *.jpg | *.png | *.eps | *.csv )
-    make all
+    make $(target)
     ;;
     *)
     # ignore
