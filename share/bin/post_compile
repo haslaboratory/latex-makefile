@@ -2,6 +2,9 @@
 
 cp out/$*.pdf ..
 
+version=$(../share/bin/version)
+cp out/$*.pdf out/$*-$version.pdf
+
 [ -f config ] && . config
 if [[ ! -z "${post_compile}" ]]; then
   echo ${post_compile}
