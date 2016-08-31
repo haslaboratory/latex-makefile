@@ -18,6 +18,9 @@ watch-inotify:
 pull:
 	git pull https://github.com/janzhou/latex-makefile
 
+pull-develop:
+	git pull https://github.com/janzhou/latex-makefile develop
+
 multicore:
 	make -j$(shell grep -c ^processor /proc/cpuinfo)
 
