@@ -6,7 +6,7 @@ then
 fi
 
 dirty(){
-  [[ -z $(git status -s) ]] || echo dirty
+  [[ -z $(git status -s) ]] || echo -dirty
 }
 
 version(){
@@ -17,4 +17,4 @@ version(){
   fi
 }
 
-echo $(version)-$(dirty)
+echo $(version)$(dirty)
