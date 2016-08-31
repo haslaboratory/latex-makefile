@@ -8,7 +8,7 @@ export BSTINPUTS=$TEXINPUTS
 export BIBINPUTS=$TEXINPUTS
 # kpsewhich
 
-VERSION=$(``git describe --always``)
+VERSION=$(``share/bin/version $*``)
 DATE=$(``git log -n 1 --format=%ai``)
 WORDCOUNT=$(``share/bin/wordcount $*``)
 
