@@ -5,8 +5,16 @@ then
   cd $1
 fi
 
-if [ "`git describe --tags 2>/dev/null`" != "" ]; then
-  git describe --tags
-else
-  git describe --always
-fi
+dirty(){
+  [[ -z $(git status -s) ]] || echo dirty
+}
+
+version(){
+  if [ "`git describe --tags 2>/dev/null`" != "" ]; then
+    git describe --tags
+  else
+    git describe --always
+  fi
+}
+
+echo $(version)-$(dirty)
