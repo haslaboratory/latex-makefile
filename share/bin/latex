@@ -9,7 +9,7 @@ export BIBINPUTS=$TEXINPUTS
 # kpsewhich
 
 VERSION=$(``share/bin/version $*``)
-DATE=$(``git log -n 1 --format=%ai``)
+TIMESTAMP=$(``git log -n 1 --format=%ai``)
 WORDCOUNT=$(``share/bin/wordcount $*``)
 
 [ -f $*/config ] && . $*/config
@@ -19,16 +19,16 @@ WORDCOUNT=$(``share/bin/wordcount $*``)
 latex(){
   case $latex in
     "pdflatex" )
-    pdflatex -interaction nonstopmode -halt-on-error -file-line-error -jobname=$* "\def\id{$*} \def\version{${DATE} ${VERSION}} \def\wordcount{$WORDCOUNT} \input{$file}"
+    pdflatex -interaction nonstopmode -halt-on-error -file-line-error -jobname=$* "\def\id{$*} \def\version{${VERSION}} \def\timestamp{${TIMESTAMP}} \def\wordcount{$WORDCOUNT} \input{$file}"
     ;;
     "xelatex" )
-    xelatex -interaction nonstopmode -halt-on-error -file-line-error  -jobname=$* "\def\id{$*} \def\version{${DATE} ${VERSION}} \def\wordcount{$WORDCOUNT} \input{$file}"
+    xelatex -interaction nonstopmode -halt-on-error -file-line-error  -jobname=$* "\def\id{$*} \def\version{${VERSION}} \def\timestamp{${TIMESTAMP}} \def\wordcount{$WORDCOUNT} \input{$file}"
     ;;
     "lualatex" )
-    lualatex -interaction nonstopmode -halt-on-error -file-line-error  -jobname=$* "\def\id{$*} \def\version{${DATE} ${VERSION}} \def\wordcount{$WORDCOUNT} \input{$file}"
+    lualatex -interaction nonstopmode -halt-on-error -file-line-error  -jobname=$* "\def\id{$*} \def\version{${VERSION}} \def\timestamp{${TIMESTAMP}} \def\wordcount{$WORDCOUNT} \input{$file}"
     ;;
     "" )
-    xelatex -interaction nonstopmode -halt-on-error -file-line-error  -jobname=$* "\def\id{$*} \def\version{${DATE} ${VERSION}} \def\wordcount{$WORDCOUNT} \input{$file}"
+    xelatex -interaction nonstopmode -halt-on-error -file-line-error  -jobname=$* "\def\id{$*} \def\version{${VERSION}} \def\timestamp{${TIMESTAMP}} \def\wordcount{$WORDCOUNT} \input{$file}"
     ;;
   esac
 }
