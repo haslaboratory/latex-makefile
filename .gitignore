@@ -124,3 +124,7 @@ desktop.ini
 .makefile
 */out
 .pdfignore
+
+# ignore target pdf source
+/*.tex
+!/example.tex

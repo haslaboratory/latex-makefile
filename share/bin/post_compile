@@ -1,12 +1,17 @@
 #!/bin/bash
 
-cp out/$*.pdf ..
+PDF=$(echo $* | sed -e "s/.tex//g" )
+
+cp out/$*.pdf ../$PDF.pdf
 
 version=$(../share/bin/version)
-cp out/$*.pdf out/$*-$version.pdf
+cp out/$*.pdf out/$PDF-$version.pdf
 
 [ -f config ] && . config
 if [[ ! -z "${post_compile}" ]]; then
   echo ${post_compile}
   ${post_compile}
 fi
+
+touch ../$PDF.pdf
+

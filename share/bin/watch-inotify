@@ -22,18 +22,18 @@ target(){
   else
     for pdf in $dir
     do
-      echo $pdf.pdf
+      echo $pdf | sed -e "s/.tex/.pdf/g"
     done
   fi
 }
 
-while file=$(inotifywait -r -q -e delete -e create -e modify -e move --exclude '/\..+' --format %w%f $(watch)); do
+while file=$(inotifywait -r -q -e delete -e create -e modify -e move --exclude '/\..+' --format %f $(watch)); do
   case "$file" in
     *.tex | *.bib | *.sty | *.cls | *.bst | *.jpg | *.png | *.eps | *.csv )
     make $(target)
     ;;
     *)
-    # ignore
+     # echo ignore $file
     ;;
   esac
 

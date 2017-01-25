@@ -1,6 +1,6 @@
 #!/bin/bash
 
-all=$(ls -d */ | sed -e "s/\//.pdf/g" | sed -e "s/share.pdf//g")
+all=$(ls -d *.tex/ | sed -e "s/.tex\//.pdf/g")
 
 [ -f .pdfignore ] || touch .pdfignore
 

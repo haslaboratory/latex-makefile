@@ -1,6 +1,6 @@
 PDF_FILES = $(shell share/bin/allpdfs)
 ALL_FILES = $(shell find -name '*.tex' -or -name '*.sty' -or -name '*.cls' -or -name '*.bib' -or -name '*.bst' -or -name '*.jpg' -or -name '*.png' -or -name '*.eps' | sed -e 's/ /\ /g')
-MAKEFILES = $(shell ls -d */ | sed -e "/share\//d" | sed -e "s/\//.makefile/g" | sed -e "s/^/.makefile\//g" | sed -e :a -e N -e "s/\n/ /" -e ta)
+MAKEFILES = $(shell share/bin/allmakefiles)
 
 -include .configure
 

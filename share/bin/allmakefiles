@@ -1,0 +1,3 @@
+#!/bin/bash
+
+echo $(./share/bin/allpdfs | sed -e "s/.pdf/.makefile/g" | sed -e "s/^/.makefile\//g" | sed -e "s/ / .makefile\//g" )
