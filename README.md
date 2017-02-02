@@ -9,7 +9,7 @@ Ultimate Latex Makefile with Example: https://github.com/janzhou/latex-makefile
 For Debian/Ubunto based systems, install:
 
 ```bash
-sudo apt install make texlive-full inotify-tools biber bibtool poppler-utils
+sudo apt install make texlive-full inotify-tools biber bibtool poppler-utils python-pygments
 ```
 
 ## Init your project:
