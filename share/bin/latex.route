@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [[ $(cat /proc/version) == *"Microsoft"* ]]; then
+  echo windows linux subsystem
+  [ -f $*/config ] && dos2unix $*/config
+fi
+
 [ -f $*/config ] && . $*/config
 
 case "$latexmk" in

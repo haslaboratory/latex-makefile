@@ -2,6 +2,14 @@
 
 Ultimate Latex Makefile with Example: https://github.com/janzhou/latex-makefile
 
+# Windows Subsystem for Linux (Bash on Windows)
+
+To use under bash on windows, convert the bash scripts to unix format:
+
+```bash
+dos2unix share/bin/*
+```
+
 # Usage
 
 ## Suggested Tools
