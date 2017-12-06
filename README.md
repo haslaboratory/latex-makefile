@@ -35,10 +35,10 @@ git clone https://github.com/janzhou/latex-makefile
 Create a new sub folder to start editing. e.g. If you want to generate ``article.pdf``, create a folder named ``article``.
 
 ```bash
-mkdir article
+cp example.tex article.tex
 ```
 
-The compiling script will start from ``article/index.tex`` or ``article/article.tex``.
+The compiling script will start from ``article.tex/index.tex`` or ``article.tex/article.tex``.
 
 In using ``index.tex`` it is easier for you to rename the sub folder.
 
@@ -137,9 +137,9 @@ latexmk=1
 
 ## TEXMF Search Path
 
-Suppose you are compiling ``article.pdf``. These paths will be searched in order: ``article``, ``.``, ``article/texmf`` and ``share/texmf``.
+Suppose you are compiling ``article.pdf``. These paths will be searched in order: ``article``, ``.``, ``article.tex/texmf`` and ``share/texmf``.
 
-If you have customized ``.sty``, ``.bst``, ``.cls`` files, you can place them in ``article``. Or you can place them in ``article/texmf`` to keep your top level directory clean.
+If you have customized ``.sty``, ``.bst``, ``.cls`` files, you can place them in ``article``. Or you can place them in ``article.tex/texmf`` to keep your top level directory clean.
 
 Because ``.`` is included in the search path, you can include files from other sub folders by using ``\input{other-articles/example.tex}`` (replace ``other-articles`` with real path).
 
