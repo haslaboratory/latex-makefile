@@ -14,7 +14,7 @@ dos2unix share/bin/*
 
 ## Suggested Tools
 
-For Debian/Ubunto based systems, install:
+For Debian/Ubuntu based systems, install:
 
 ```bash
 sudo apt install make texlive-full inotify-tools biber bibtool poppler-utils python-pygments
