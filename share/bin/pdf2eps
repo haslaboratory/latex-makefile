@@ -1,0 +1,18 @@
+#!/bin/bash
+
+pdf2eps1() {
+    pdfcrop "$1.pdf"
+    pdftops -eps "$1-crop.pdf" "$1.eps"
+    rm  "$1-crop.pdf"
+}
+
+pdf2eps2() {
+    if [[ "$1" == *.pdf ]]
+    then
+       pdf2eps1 ${1::-4}
+    fi
+}
+
+while [ "$1" != "" ]; do
+    pdf2eps2 $1 && shift
+done

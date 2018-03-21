@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export PATH="$PATH:$(pwd)/share/bin"
+
 if [[ $(cat /proc/version) == *"Microsoft"* ]]; then
   echo windows linux subsystem
   [ -f $*/config ] && dos2unix $*/config
