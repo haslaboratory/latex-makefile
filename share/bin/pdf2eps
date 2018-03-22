@@ -1,9 +1,11 @@
 #!/bin/bash
 
 pdf2eps1() {
-    pdfcrop "$1.pdf"
-    pdftops -eps "$1-crop.pdf" "$1.eps"
-    rm  "$1-crop.pdf"
+    if [[ "$1.pdf" -nt "$1.eps" ]]; then
+        pdfcrop "$1.pdf"
+        pdftops -eps "$1-crop.pdf" "$1.eps"
+        rm  "$1-crop.pdf"
+    fi
 }
 
 pdf2eps2() {
