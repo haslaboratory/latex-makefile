@@ -4,7 +4,7 @@ PDF=$(echo $* | sed -e "s/.tex//g" )
 
 cp out/$*.pdf ../$PDF.pdf
 
-version=$(../share/bin/version)
+version=$(version)
 cp out/$*.pdf out/$PDF-$version.pdf
 
 [ -f config ] && . config
@@ -14,4 +14,3 @@ if [[ ! -z "${post_compile}" ]]; then
 fi
 
 touch ../$PDF.pdf
-
