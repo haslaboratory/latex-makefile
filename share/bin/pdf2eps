@@ -11,7 +11,12 @@ pdf2eps1() {
 pdf2eps2() {
     if [[ "$1" == *.pdf ]]
     then
-       pdf2eps1 ${1::-4}
+        if [[ "$1" == *-eps-converted-to.pdf ]]
+        then
+            echo $1
+        else
+            pdf2eps1 ${1::-4}
+        fi
     fi
 }
 

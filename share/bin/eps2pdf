@@ -1,0 +1,16 @@
+eps2pdf1() {
+  if [[ "$1.eps" -nt "$1-eps-converted-to.pdf" ]]; then
+    epstopdf $1.eps -o=$1-eps-converted-to.pdf
+  fi
+}
+
+eps2pdf2() {
+  if [[ "$1" == *.eps ]]
+  then
+    eps2pdf1 ${1::-4}
+  fi
+}
+
+while [ "$1" != "" ]; do
+  eps2pdf2 $1 && shift
+done
