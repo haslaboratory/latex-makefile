@@ -9,9 +9,18 @@ version=$(version)
 cp out/$*.pdf out/$PDF-$version.pdf
 
 [ -f config ] && . config
+
 if [[ ! -z "${post_compile}" ]]; then
   echo ${post_compile}
   ${post_compile}
 fi
+
+case "${gray}" in
+  1)
+  ../share/bin/gray out/$*.pdf ../$PDF-gray.pdf &
+  ;;
+  *)
+  ;;
+esac
 
 touch ../$PDF.pdf
