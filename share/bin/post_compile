@@ -3,7 +3,6 @@
 PDF=$(echo $* | sed -e "s/.tex//g" )
 
 cp out/$*.pdf ../$PDF.pdf
-../share/bin/gray ../$PDF.pdf ../$PDF-gray.pdf
 
 version=$(version)
 cp out/$*.pdf out/$PDF-$version.pdf
