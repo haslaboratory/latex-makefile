@@ -14,7 +14,9 @@ WORDCOUNT=$(``share/bin/wordcount $*``)
 
 [ -f $*/config ] && . $*/config
 
-[ -f $*/index.tex ] && file=$*/index.tex || file=$*/$*
+file=$*/index.tex
+[ -f $file ] && file=$file || file=$*/main.tex
+[ -f $file ] && file=$file || file=$*/$*.tex
 
 latex(){
   case $latex in
