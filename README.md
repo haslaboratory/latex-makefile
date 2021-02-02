@@ -145,6 +145,16 @@ Because ``.`` is included in the search path, you can include files from other s
 
 The use of ``share/texmf`` should be avoided, as it is supposed to put some shared files.
 
+## Imports
+
+To import from other latex projects, add "imports" in the config file.
+
+```bash
+imports="latex-theme"
+```
+
+This is useful when you use other latex projects as templates or share paragraphs in multiple projects.
+
 ## Dependency between ``pdf``s
 
 If you need to include files from other latex sources, it would be wise to explicitly add dependencies in the make file. So that the changes in the source ``pdf`` would cause rebuild in the destiny ``pdf``. This is done by add ``depend`` configuration in ``config`` file:

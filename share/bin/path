@@ -9,4 +9,14 @@ do
   fi
 done
 
+[ -f $*/config ] && . $*/config
+
+for import in $imports
+do
+  dir="$(pwd)/${import}.tex"
+  if [ -d $dir ]; then
+    TEXMF="$TEXMF$dir:"
+  fi
+done
+
 echo $TEXMF
