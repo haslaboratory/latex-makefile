@@ -13,7 +13,15 @@ done
 
 for import in $imports
 do
-  dir="$(pwd)/${import}.tex"
+  args=(${import//||/ })
+  target=${args[0]}
+  source=${args[1]}
+  dir="$(pwd)/${target}"
+
+  if [ ! -d $dir  ];then
+    git clone $source $dir
+  fi
+
   if [ -d $dir ]; then
     TEXMF="$TEXMF$dir:"
   fi

@@ -145,7 +145,7 @@ Because ``.`` is included in the search path, you can include files from other s
 
 The use of ``share/texmf`` should be avoided, as it is supposed to put some shared files.
 
-## Imports
+## Import and Download
 
 To import from other latex projects, add "imports" in the config file.
 
@@ -154,6 +154,12 @@ imports="latex-theme"
 ```
 
 This is useful when you use other latex projects as templates or share paragraphs in multiple projects.
+
+To download from a git project and import:
+
+```bash
+imports="latex-theme||git@source"
+```
 
 ## Dependency between ``pdf``s
 
