@@ -1,19 +1,11 @@
 #!/bin/bash -e
 
-CUR_SYSTEM=$(uname -s)
-PWD=$(pwd)
-MAKEFILE=$PWD/.makefile
-TMPFILE=$MAKEFILE/.dependencies_tmp
+DEPS="make texlive-full inotify-tools biber bibtool poppler-utils python-pygments"
 
 if test -f /etc/debian_version; then
-    if test ! -f $TMPFILE; then
-        apt install make texlive-full inotify-tools -y
-        apt install biber bibtool poppler-utils -y
-        apt install python-pygments -y
-        touch $TMPFILE
-    else
-        echo "installed dependencies previously."
-    fi
+    echo "pkgdep: installing dependencies - $DEPS"
+    sudo apt update
+    sudo apt install $DEPS -y
 else
-    echo "can't support current system: $CUR_SYSTEM"
+    echo "pkgdep: can't support current system $(uname -s)"
 fi
