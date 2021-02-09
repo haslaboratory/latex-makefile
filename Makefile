@@ -18,17 +18,16 @@ watch-inotify:
 
 pull:
 	git pull https://github.com/janzhou/latex-makefile
-	${PWD}/pkgdep.sh
 
 pull-develop:
 	git pull https://github.com/janzhou/latex-makefile develop
-	${PWD}/pkgdep.sh
 
 multicore:
 	make -j$(shell grep -c ^processor /proc/cpuinfo)
 
 .makefile:
 	mkdir -p .makefile
+	share/bin/pkgdep
 
 .makefile/%.makefile: .makefile share/makefile.sed
 	sed -e "s/SED/$*/g" share/makefile.sed > $@
@@ -37,6 +36,3 @@ multicore:
 
 echo:
 	echo $(PDF_FILES)
-
-inst_dependencies:
-	${PWD}/pkgdep.sh
