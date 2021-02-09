@@ -1,6 +1,7 @@
 PDF_FILES = $(shell share/bin/allpdfs)
 ALL_FILES = $(shell find -name '*.tex' -or -name '*.sty' -or -name '*.cls' -or -name '*.bib' -or -name '*.bst' -or -name '*.jpg' -or -name '*.png' -or -name '*.eps' | sed -e 's/ /\ /g')
 MAKEFILES = $(shell share/bin/allmakefiles)
+PWD=$(shell pwd)
 
 -include .configure
 
@@ -17,9 +18,11 @@ watch-inotify:
 
 pull:
 	git pull https://github.com/janzhou/latex-makefile
+	${PWD}/pkgdep.sh
 
 pull-develop:
 	git pull https://github.com/janzhou/latex-makefile develop
+	${PWD}/pkgdep.sh
 
 multicore:
 	make -j$(shell grep -c ^processor /proc/cpuinfo)
@@ -34,3 +37,6 @@ multicore:
 
 echo:
 	echo $(PDF_FILES)
+
+inst_dependencies:
+	${PWD}/pkgdep.sh
